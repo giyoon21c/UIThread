@@ -12,20 +12,33 @@
 
 
     <Button
-        android:text="start thread"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:id="@+id/buttonThreadStarter" />
-
-    <Button
         android:text="stop thread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/buttonStopThread"
         android:layout_below="@+id/buttonThreadStarter"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        android:id="@+id/buttonStopThread" />
+        android:layout_marginTop="135dp" />
+
+    <Button
+        android:text="start thread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonThreadStarter"
+        android:layout_below="@+id/textViewThreadCount"
+        android:layout_alignLeft="@+id/buttonStopThread"
+        android:layout_alignStart="@+id/buttonStopThread"
+        android:layout_marginTop="110dp" />
+
+    <TextView
+        android:text="Thread Count value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewThreadCount"
+        android:textSize="25sp"
+        android:layout_marginTop="64dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/buttonThreadStarter"
+        android:layout_alignStart="@+id/buttonThreadStarter" />
+
 </RelativeLayout>
