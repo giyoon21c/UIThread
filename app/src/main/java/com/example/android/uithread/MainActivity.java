@@ -34,9 +34,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.buttonThreadStarter:
                 mStopLoop = true;
+
+                /*
                 while (mStopLoop) {
                     Log.i(TAG, "Thread id in while loop:" + Thread.currentThread().getId());
                 }
+                */
+
+                // create a new thread instead of while in the main UI thread
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (mStopLoop) {
+                            Log.i(TAG, "Thread id in while loop:" + Thread.currentThread().getId());
+                        }
+                    }
+                }).start();
+
                 break;
             case R.id.buttonStopThread:
                 mStopLoop = false;
