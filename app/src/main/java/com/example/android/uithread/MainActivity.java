@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonStart, buttonStop;
     private TextView threadCountTextView;
     private boolean mStopLoop;
+    private MyAsyncTask myAsyncTask;
 
     int count = 0;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonStop.setOnClickListener(this);
 
         handler = new Handler(getApplicationContext().getMainLooper());
+
     }
 
     @Override
@@ -95,14 +97,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 */
 
+                myAsyncTask = new MyAsyncTask();
+                myAsyncTask.execute(0);
+
                 break;
             case R.id.buttonStopThread:
                 mStopLoop = false;
+                //myAsyncTask.cancel(true);
                 break;
         }
     }
 
     private class MyAsyncTask extends AsyncTask<Integer, Integer, Integer>{
+
         private int customCounter;
 
         @Override
@@ -122,8 +129,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (InterruptedException e) {
                     Log.i(TAG, e.getMessage());
                 }
+                //return customCounter;
             }
             return customCounter;
+
         }
 
         @Override
@@ -132,11 +141,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             threadCountTextView.setText("" + values[0]);
 
         }
-        
+
         @Override
         protected void onPostExecute(Integer integer) {
-            super.onPostExecute();
+            super.onPostExecute(integer);
             threadCountTextView.setText("" + integer);
+            count = integer;
         }
 
     }
